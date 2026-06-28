@@ -1,13 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
-    <title>Live Football</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mono 29 Player</title>
+    <script src="https://cdn.jsdelivr.net/npm/shaka-player@4.3.0/dist/shaka-player.compiled.js"></script>
     <style>
-        body { margin: 0; padding: 0; overflow: hidden; }
-        iframe { width: 100vw; height: 100vh; border: none; }
+        body, html { margin: 0; padding: 0; background: #000; height: 100%; width: 100%; overflow: hidden; }
+        video { width: 100%; height: 100%; }
     </style>
 </head>
 <body>
-    <iframe src="https://livesod365aj.com/" allowfullscreen="true"></iframe>
+    <video id="video" controls autoplay playsinline></video>
+    <script>
+        async function initPlayer() {
+            const video = document.getElementById('video');
+            const player = new shaka.Player(video);
+            
+            // ลิงก์สตรีม
+            const manifestUri = 'https://cri-streamer3.cdn.3bbtv.com:8443/3bb/live/29/29.mpd';
+            
+            try {
+                await player.load(manifestUri);
+                console.log('วิดีโอโหลดสำเร็จ');
+            } catch (e) {
+                console.error('เกิดข้อผิดพลาดในการโหลด:', e);
+            }
+        }
+        document.addEventListener('DOMContentLoaded', initPlayer);
+    </script>
 </body>
 </html>
