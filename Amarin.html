@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/shaka-player@4.3.0/dist/shaka-player.compiled.js"></script>
+    <style>body { margin: 0; background: #000; overflow: hidden; } video { width: 100vw; height: 100vh; }</style>
+</head>
+<body>
+    <video id="video" controls autoplay playsinline></video>
+    <script>
+        const video = document.getElementById('video');
+        const player = new shaka.Player(video);
+        player.load('https://cri-streamer3.cdn.3bbtv.com:8443/3bb/live/34/34.mpd');
+    </script>
+</body>
+</html>
